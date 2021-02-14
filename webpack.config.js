@@ -13,7 +13,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
     mode: "development",
     entry: {
-        main: "./src/app.js"
+        main: "./app.js"
     },
     output: {
         path: path.resolve("./dist"),
@@ -35,7 +35,7 @@ module.exports = {
                     // process.env.NODE_ENV === "production"
                     //     ? MiniCssExtractPlugin.loader // 프로덕션 환경
                     //     : 
-                        "style-loader", // 개발 환경
+                    "style-loader", // 개발 환경
                     "css-loader"
                 ]
             },
@@ -47,6 +47,11 @@ module.exports = {
                     name: '[name].[ext]?[hash]',
                     limit: 20000, // 2kb 이상인 경우는 file-loader 가 실행됨.
                 }
+            },
+            {
+                test: /\.js$/,
+                loader: "babel-loader", // 바벨 로더를 추가한다
+                exclude: /node_modules/, // 처리 제외
             }
         ]
     },
